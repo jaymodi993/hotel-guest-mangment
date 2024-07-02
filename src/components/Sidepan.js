@@ -2,7 +2,6 @@ import React from "react";
 
 function Sidepan() {
   return (
-    <>
       <div id="layoutSidenav_nav">
         <nav
           className="sb-sidenav accordion sb-sidenav-dark"
@@ -160,7 +159,6 @@ function Sidepan() {
           </div>
         </nav>
       </div>
-    </>
   );
 }
 
