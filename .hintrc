@@ -10,6 +10,27 @@
           "meta[name=theme-color]"
         ]
       }
+    ],
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "-webkit-tap-highlight-color",
+          "-webkit-text-size-adjust",
+          "text-decoration-skip-ink",
+          "text-align: -webkit-match-parent"
+        ]
+      }
     ]
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not and_chr <= 126",
+    "not chrome <= 125",
+    "not edge <= 125",
+    "not firefox <= 126",
+    "not safari <= 17.4",
+    "not samsung <= 25"
+  ]
 }
