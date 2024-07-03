@@ -1,1 +1,1 @@
-const userDetail = {'userName' : 'Admin' , 'password' : '123'};
+export const userDetail = { userName: "Admin", password: "123" };

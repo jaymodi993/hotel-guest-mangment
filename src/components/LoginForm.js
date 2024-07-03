@@ -1,14 +1,12 @@
 import React from "react";
 import Footer from "./Footer";
-import { UserAction } from '../Store/IndexSlice';
+import { UserAction } from "../Store/IndexSlice";
 import { useRef } from "react";
-import { useDispatch} from "react-redux";
-
+import { useDispatch } from "react-redux";
 
 function LoginForm() {
-
-  const userName = useRef('');
-  const password = useRef('');
+  const userName = useRef("");
+  const password = useRef("");
 
   const dispatch = useDispatch();
 
@@ -16,12 +14,14 @@ function LoginForm() {
     e.preventDefault();
     const pUserName = userName.current.value;
     const pPassword = password.current.value;
-    userName.current.value = '';
-    password.current.value = '';
+    userName.current.value = "";
+    password.current.value = "";
 
-    dispatch(UserAction.setIsUserAuthenticated({
-      body: { "userName": pUserName, "password": pPassword }
-    }))
+    dispatch(
+      UserAction.setIsUserAuthenticated({
+        body: { userName: pUserName, password: pPassword },
+      })
+    );
   }
 
   return (
