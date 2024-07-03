@@ -1,7 +1,29 @@
 import React from "react";
-import Footer from "./Footer";
+import Footer from "Footer";
+import { UserAction } from './Store/IndexSlice';
+import { useRef } from "react";
+import { useDispatch} from "react-redux";
+
 
 function LoginForm() {
+
+  const userName = useRef('');
+  const password = useRef('');
+
+  const dispatch = useDispatch();
+
+  function submitUser(e) {
+    e.preventDefault();
+    const pUserName = userName.current.value;
+    const pPassword = password.current.value;
+    userName.current.value = '';
+    password.current.value = '';
+
+    dispatch(UserAction.setIsUserAuthenticated({
+      body: { "userName": pUserName, "password": pPassword }
+    }))
+  }
+
   return (
     <div className="bg-info">
       <div id="layoutAuthentication">
@@ -17,13 +39,14 @@ function LoginForm() {
                       </h3>
                     </div>
                     <div className="card-body">
-                      <form>
+                      <form onSubmit={submitUser}>
                         <div className="form-floating mb-3">
                           <input
                             className="form-control"
                             id="inputEmail"
                             type="email"
                             placeholder="name@example.com"
+                            ref={userName}
                           />
                           <label htmlFor="inputEmail">Email address</label>
                         </div>
@@ -33,37 +56,16 @@ function LoginForm() {
                             id="inputPassword"
                             type="password"
                             placeholder="Password"
+                            ref={password}
                           />
                           <label htmlFor="inputPassword">Password</label>
                         </div>
-                        <div className="form-check mb-3">
-                          <input
-                            className="form-check-input"
-                            id="inputRememberPassword"
-                            type="checkbox"
-                            defaultValue
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="inputRememberPassword"
-                          >
-                            Remember Password
-                          </label>
-                        </div>
                         <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
-                          <a className="small" href="password.html">
-                            Forgot Password?
-                          </a>
-                          <a className="btn btn-primary" href="index.html">
+                          <button className="btn btn-primary" type="submit">
                             Login
-                          </a>
+                          </button>
                         </div>
                       </form>
-                    </div>
-                    <div className="card-footer text-center py-3">
-                      <div className="small">
-                        <a href="register.html">Need an account? Sign up!</a>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -72,7 +74,7 @@ function LoginForm() {
           </main>
         </div>
         <div id="layoutAuthentication_footer">
-          <Footer/>
+          <Footer />
         </div>
       </div>
     </div>

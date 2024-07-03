@@ -1,21 +1,15 @@
 import React from "react";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Sidepan from "./components/Sidepan";
-import LoginForm from "./components/LoginForm";
+import { Provider } from "react-redux";
+import UserStore from "../src/Store/IndexSlice";
+import LandingPage from "./Components/LandingPage";
+
 
 function App() {
   return (
-    // <LoginForm/>
-    <div className="sb-nav-fixed">
-      <Header />
-      <div id="layoutSidenav">
-        <Sidepan />
-        <div id="layoutSidenav_content">
-          <Footer />
-        </div>
-      </div>
-    </div>
+    <Provider store={UserStore}>
+      <LandingPage/>
+    </Provider>
+
   );
 }
 
