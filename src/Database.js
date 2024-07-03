@@ -1,1 +1,4 @@
-export const userDetail = { userName: "Admin", password: "123" };
+const userDetail = { 
+    userName: "Admin",
+    password: "123" 
+};
