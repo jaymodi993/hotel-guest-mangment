@@ -1,5 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import userDetail from "../Database";
+import { userDetail } from "../Database.js";
 
 const UserSlice = createSlice({
   name: "userSlice",
@@ -15,15 +15,18 @@ const UserSlice = createSlice({
         state.isUserAuthenticated = false;
       }
     },
+    logout: (state) => {
+      state.isUserAuthenticated = false;
+    }
   },
 });
 
 export const UserAction = UserSlice.actions;
 
-const UserStore = configureStore({
+const userStore = configureStore({
   reducer: {
     userSlice: UserSlice.reducer,
   },
 });
 
-export default UserStore;
+export default userStore;

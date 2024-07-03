@@ -44,7 +44,7 @@ function LoginForm() {
                           <input
                             className="form-control"
                             id="inputEmail"
-                            type="email"
+                            type="text"
                             placeholder="name@example.com"
                             ref={userName}
                           />
