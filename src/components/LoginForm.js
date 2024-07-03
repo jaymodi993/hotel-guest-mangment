@@ -1,6 +1,6 @@
 import React from "react";
-import Footer from "Footer";
-import { UserAction } from './Store/IndexSlice';
+import Footer from "./Footer";
+import { UserAction } from '../Store/IndexSlice';
 import { useRef } from "react";
 import { useDispatch} from "react-redux";
 
