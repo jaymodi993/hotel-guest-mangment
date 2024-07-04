@@ -1,11 +1,15 @@
 import React from "react";
 import { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { CustomerAction } from "../Store/IndexSlice";
+import { useNavigate } from "react-router-dom";
+
 
 function CustomerAdd() {
-  // const { CustomerObj = {} } = useSelector((store) => store.customerSlice);
+  // const {CustomerObj} = useSelector((store) => store.customerSlice);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   const cName = useRef("");
   const cEmail = useRef("");
   const cMobile = useRef("");
@@ -22,74 +26,76 @@ function CustomerAdd() {
   const cChild = useRef("");
 
   useEffect(() => {
-    cName.current.valueOf = "";
-    cEmail.current.valueOf = "";
-    cMobile.current.valueOf = "";
-    cRoomNo.current.valueOf = "";
-    cIdType.current.valueOf = "";
-    cIdNo.current.valueOf = "";
-    cArea.current.valueOf = "";
-    cCity.current.valueOf = "";
-    cState.current.valueOf = "";
-    cCountry.current.valueOf = "";
-    cCheckInDate.current.valueOf = "";
-    cCheckOutDate.current.valueOf = "";
-    cGuest.current.valueOf = "";
-    cChild.current.valueOf = "";
+    cName.current.value = "";
+    cEmail.current.value = "";
+    cMobile.current.value = "";
+    cRoomNo.current.value = "";
+    cIdType.current.value = "";
+    cIdNo.current.value = "";
+    cArea.current.value = "";
+    cCity.current.value = "";
+    cState.current.value = "";
+    cCountry.current.value = "";
+    cCheckInDate.current.value = "";
+    cCheckOutDate.current.value = "";
+    cGuest.current.value = "";
+    cChild.current.value = "";
   }, []);
 
   function submitCustomer(e) {
+    debugger
     e.preventDefault();
-    const customername = cName.current.valueOf;
-    const customeremail = cEmail.current.valueOf;
-    const customermobile = cMobile.current.valueOf;
-    const customerroomno = cRoomNo.current.valueOf;
-    const customeridtype = cIdType.current.valueOf;
-    const idproofnumber = cIdNo.current.valueOf;
-    const customerarea = cArea.current.valueOf;
-    const customercity = cCity.current.valueOf;
-    const customerstate = cState.current.valueOf;
-    const customercountry = cCountry.current.valueOf;
-    const customercheckindatetime = cCheckInDate.current.valueOf;
-    const customercheckoutdatetime = cCheckOutDate.current.valueOf;
-    const customerguestno = cGuest.current.valueOf;
-    const customerchildrenno = cChild.current.valueOf;
+    const customername = cName.current.value;
+    const customeremail = cEmail.current.value;
+    const customermobile = cMobile.current.value;  
+    const customerroomno = cRoomNo.current.value;
+    const customeridtype = cIdType.current.value;
+    const idproofnumber = cIdNo.current.value;
+    const customerarea = cArea.current.value;
+    const customercity = cCity.current.value;
+    const customerstate = cState.current.value;
+    const customercountry = cCountry.current.value;
+    const customercheckindatetime = cCheckInDate.current.value;
+    const customercheckoutdatetime = cCheckOutDate.current.value;
+    const customerguestno = cGuest.current.value;
+    const customerchildrenno = cChild.current.value;
 
-    cName.current.valueOf = "";
-    cEmail.current.valueOf = "";
-    cMobile.current.valueOf = "";
-    cRoomNo.current.valueOf = "";
-    cIdType.current.valueOf = "";
-    cIdNo.current.valueOf = "";
-    cArea.current.valueOf = "";
-    cCity.current.valueOf = "";
-    cState.current.valueOf = "";
-    cCountry.current.valueOf = "";
-    cCheckInDate.current.valueOf = "";
-    cCheckOutDate.current.valueOf = "";
-    cGuest.current.valueOf = "";
-    cChild.current.valueOf = "";
+    cName.current.value = "";
+    cEmail.current.value = "";
+    cMobile.current.value = "";
+    cRoomNo.current.value = "";
+    cIdType.current.value = "";
+    cIdNo.current.value = "";
+    cArea.current.value = "";
+    cCity.current.value = "";
+    cState.current.value = "";
+    cCountry.current.value = "";
+    cCheckInDate.current.value = "";
+    cCheckOutDate.current.value = "";
+    cGuest.current.value = "";
+    cChild.current.value = "";
 
     dispatch(
       CustomerAction.addCustomer({
         body: {
-          CustomerName: customername,
-          CustomerEmail: customeremail,
-          CustomerMobile: customermobile,
-          CustomerRoomNo: customerroomno,
-          CustomerIdType: customeridtype,
-          IdProofNumber: idproofnumber,
-          CustomerArea: customerarea,
-          CustomerCity: customercity,
-          CustomerState: customerstate,
-          CustomerCountry: customercountry,
-          CustomerCheckInDateTime: customercheckindatetime,
-          CustomerCheckOutDateTime: customercheckoutdatetime,
-          CustomerGuestNo: customerguestno,
-          CustomerChildrenNo: customerchildrenno,
+          'CustomerName': customername,
+         'CustomerEmail': customeremail,
+          'CustomerMobile': customermobile,
+          'CustomerRoomNo': customerroomno,
+          'CustomerIdType': customeridtype,
+          'IdProofNumber': idproofnumber,
+          'CustomerArea': customerarea,
+          'CustomerCity': customercity,
+          'CustomerState': customerstate,
+          'CustomerCountry': customercountry,
+          'CustomerCheckInDateTime': customercheckindatetime,
+          'CustomerCheckOutDateTime': customercheckoutdatetime,
+          'CustomerGuestNo': customerguestno,
+          'CustomerChildrenNo': customerchildrenno,
         },
-      })
+      })  
     );
+    navigate('/');
   }
 
   return (

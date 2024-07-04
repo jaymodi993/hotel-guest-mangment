@@ -1,6 +1,12 @@
 import React from "react";
+// import { CustomerAction } from "../Store/IndexSlice";
+import { useSelector } from "react-redux";
 
 function CustomerList() {
+  debugger
+  const {CustomerList} = useSelector((store) => store.customerSlice);
+
+  
   return  (
     <div className="m-4">
       <main>
@@ -27,8 +33,8 @@ function CustomerList() {
               >
                 <thead>
                   <tr>
-                    <th>CustomerName</th>
                     <th>CustomerId</th>
+                    <th>CustomerName</th>
                     <th>Mobile Number</th>
                     <th>CheckInDate</th>
                     <th>CheckOutDate</th>
@@ -36,15 +42,16 @@ function CustomerList() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Patel Akshesh</td>
-                    <td>1234567890</td>
-                    <td>9067892009</td>
-                    <td>05-07-2024</td>
-                    <td>05-07-2024</td>
-                    <td>999</td>
+                {CustomerList.map((customer, index) => (
+                   <tr key={index}>
+                    <td>{customer.CustomerId}</td>
+                    <td>{customer.CustomerName}</td>
+                    <td>{customer.CustomerMobile}</td>
+                    <td>{customer.CustomerCheckInDateTime}</td>
+                    <td>{customer.CustomerCheckOutDateTime}</td>
+                    <td>{customer.CustomerGuestNo}</td>
                   </tr>
-                  
+                ))}
                 </tbody>
               </table>
             </div>

@@ -28,6 +28,7 @@ const CustomerSlice = createSlice({
   initialState: { CustomerList: [], CustomerObj: {} },
   reducers: {
     addCustomer: (state, action) => {
+      debugger
       action.payload.body.CustomerId = Math.random();
       const newCustomerList = [...state.CustomerList, action.payload.body];
       state.CustomerList = newCustomerList;
