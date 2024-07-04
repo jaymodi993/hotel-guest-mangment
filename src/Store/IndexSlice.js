@@ -28,28 +28,24 @@ const CustomerSlice = createSlice({
   initialState: { CustomerList: [], CustomerObj: {} },
   reducers: {
     addCustomer: (state, action) => {
-      debugger
       action.payload.body.CustomerId = Math.floor(Math.random() * 10000);
       const newCustomerList = [...state.CustomerList, action.payload.body];
       state.CustomerList = newCustomerList;
       return state;
     },
-    
-    updateCustomer: (state, action) =>{
+    updateCustomer: (state, action) => {
       let newCustomers = state.CustomerList.filter(i => i.CustomerId !== action.payload.body.CustomerId);
-      newCustomers = [...newCustomers,action.payload.body];
+      newCustomers = [...newCustomers, action.payload.body];
       state.CustomerList = newCustomers;
       state.CustomerObj = {};
-  },
-
-  deleteCustomer: (state, action) =>{
+    },
+    deleteCustomer: (state, action) => {
       let newCustomers = state.CustomerList.filter(i => i.CustomerId !== action.payload.body.CustomerId);
       state.CustomerList = newCustomers;
-  },
-
-  fillFormCustomer: (state, action) =>{
+    },
+    fillFormCustomer: (state, action) => {
       state.CustomerObj = action.payload.body;
-  },
+    },
   },
 });
 export const CustomerAction = CustomerSlice.actions;

@@ -12,7 +12,7 @@ function CustomerAdd() {
 
   const [isEdit, setIsEdit] = useState(false);
 
-  
+
   const cName = useRef("");
   const cEmail = useRef("");
   const cMobile = useRef("");
@@ -48,28 +48,29 @@ function CustomerAdd() {
 
   }
   else{
-    cName.current.value = CustomerObj.cName;
-    cEmail.current.value = CustomerObj.cEmail;
-    cMobile.current.value = CustomerObj.cMobile;
-    cRoomNo.current.value = CustomerObj.cRoomNo;
-    cIdType.current.value = CustomerObj.cIdType;
-    cIdNo.current.value = CustomerObj.cIdNo;
-    cArea.current.value = CustomerObj.cArea;
-    cCity.current.value = CustomerObj.cCity;
-    cState.current.value = CustomerObj.cState;
-    cCountry.current.value = CustomerObj.cCountry;
-    cCheckInDate.current.value = CustomerObj.cCheckInDate;
-    cCheckOutDate.current.value = CustomerObj.cCheckOutDate;
-    cGuest.current.value = CustomerObj.cGuest;
-    cChild.current.value = CustomerObj.cCheckInDate;
+    
+    cName.current.value = CustomerObj.CustomerName;
+    cEmail.current.value = CustomerObj.CustomerEmail;
+    cMobile.current.value = CustomerObj.CustomerMobile;
+    cRoomNo.current.value = CustomerObj.CustomerRoomNo;
+    cIdType.current.value = CustomerObj.CustomerIdType;
+    cIdNo.current.value = CustomerObj.IdProofNumber;
+    cArea.current.value = CustomerObj.CustomerArea;
+    cCity.current.value = CustomerObj.CustomerCity;
+    cState.current.value = CustomerObj.CustomerState;
+    cCountry.current.value = CustomerObj.CustomerCountry;
+    cCheckInDate.current.value = CustomerObj.CustomerCheckInDateTime;
+    cCheckOutDate.current.value = CustomerObj.CustomerCheckOutDateTime;
+    cGuest.current.value = CustomerObj.CustomerGuestNo;
+    cChild.current.value = CustomerObj.CustomerChildrenNo;
     setIsEdit(true);
   
   }
 }, []);
 
   function submitCustomer(e) {
-    debugger
     e.preventDefault();
+    
     const customername = cName.current.value;
     const customeremail = cEmail.current.value;
     const customermobile = cMobile.current.value;  
@@ -85,6 +86,7 @@ function CustomerAdd() {
     const customerguestno = cGuest.current.value;
     const customerchildrenno = cChild.current.value;
 
+    
     cName.current.value = "";
     cEmail.current.value = "";
     cMobile.current.value = "";
@@ -99,14 +101,13 @@ function CustomerAdd() {
     cCheckOutDate.current.value = "";
     cGuest.current.value = "";
     cChild.current.value = "";
-
      if(isEdit) {
-      debugger
       dispatch(
         CustomerAction.updateCustomer({
           body: {
+            'CustomerId':CustomerObj.CustomerId,
             'CustomerName': customername,
-           'CustomerEmail': customeremail,
+            'CustomerEmail': customeremail,
             'CustomerMobile': customermobile,
             'CustomerRoomNo': customerroomno,
             'CustomerIdType': customeridtype,

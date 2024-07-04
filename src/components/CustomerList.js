@@ -1,25 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { CustomerAction } from "../Store/IndexSlice";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function CustomerList() {
-  const {CustomerList} = useSelector((store) => store.customerSlice);
+  const { CustomerList } = useSelector((store) => store.customerSlice);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [filteredCustomers, setFilteredCustomers] = useState(CustomerList)
 
   const handleEditClick = (customer) => {
-    debugger
-      dispatch(CustomerAction.fillFormCustomer({
-          body: customer
-      }));
+    dispatch(CustomerAction.fillFormCustomer({
+      body: customer
+    }));
+    navigate("add-customer");
   };
   const handleDeleteClick = (customer) => {
-      dispatch(CustomerAction.deleteCustomer({
-          body: customer
-      }));
+    dispatch(CustomerAction.deleteCustomer({
+      body: customer
+    }));
+  };
+  const handleSearch = (searchText) => {
+    const filteredItems = CustomerList.filter((customer) =>
+      customer.CustomerName.toLowerCase().includes(searchText.toLowerCase())
+      );
+  
+      setFilteredCustomers(filteredItems);
   };
 
-  return  (
+
+  return (
     <div className="m-4">
       <main>
         <div className="">
@@ -34,6 +46,7 @@ function CustomerList() {
                     type="search"
                     title="Search within table"
                     aria-controls="datatablesSimple"
+                    onChange={(e) => handleSearch(e.target.value)}
                   />
                 </div>
               </div>
@@ -53,28 +66,28 @@ function CustomerList() {
                   </tr>
                 </thead>
                 <tbody>
-                {CustomerList.map((customer, index) => (
-                   <tr key={index}>
-                    <td>{customer.CustomerId}</td>
-                    <td>{customer.CustomerName}</td>
-                    <td>{customer.CustomerMobile}</td>
-                    <td>{customer.CustomerCheckInDateTime}</td>
-                    <td>{customer.CustomerCheckOutDateTime}</td>
-                    <td>{customer.CustomerGuestNo}</td>
-                    <td>
-                      
-                    <button className="btn btn-secondary ms-5" onClick={() => handleEditClick(customer)} >
-                                Edit
-                            </button>
-                            <button className="btn btn-primary ms-5" onClick={() => handleDeleteClick(customer)}>
-                                Delete
-                            </button>
-                    </td>
-                  </tr>
-                ))}
+                  {filteredCustomers.map((customer, index) => (
+                    <tr key={customer.CustomerId}>
+                      <td>{customer.CustomerId}</td>
+                      <td>{customer.CustomerName}</td>
+                      <td>{customer.CustomerMobile}</td>
+                      <td>{customer.CustomerCheckInDateTime}</td>
+                      <td>{customer.CustomerCheckOutDateTime}</td>
+                      <td>{customer.CustomerGuestNo}</td>
+                      <td>
+
+                        <button className="btn btn-secondary ms-5" onClick={() => handleEditClick(customer)} >
+                          Edit
+                        </button>
+                        <button className="btn btn-primary ms-5" onClick={() => handleDeleteClick(customer)}>
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
-              
+
             </div>
           </div>
         </div>
