@@ -3,11 +3,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 function CustomerList() {
-  debugger
-  const {CustomerList} = useSelector((store) => store.customerSlice);
+  debugger;
+  const { CustomerList } = useSelector((store) => store.customerSlice);
 
-  
-  return  (
+  return (
     <div className="m-4">
       <main>
         <div className="">
@@ -15,7 +14,6 @@ function CustomerList() {
           <div className="card mb-4">
             <div className="card-body container">
               <div className="datatable-top">
-              
                 <div className="datatable-search">
                   <input
                     className="datatable-input"
@@ -42,16 +40,30 @@ function CustomerList() {
                   </tr>
                 </thead>
                 <tbody>
-                {CustomerList.map((customer, index) => (
-                   <tr key={index}>
-                    <td>{customer.CustomerId}</td>
-                    <td>{customer.CustomerName}</td>
-                    <td>{customer.CustomerMobile}</td>
-                    <td>{customer.CustomerCheckInDateTime}</td>
-                    <td>{customer.CustomerCheckOutDateTime}</td>
-                    <td>{customer.CustomerGuestNo}</td>
-                  </tr>
-                ))}
+                  {CustomerList.map((customer, index) => (
+                    <tr key={index}>
+                      <td>{customer.CustomerId}</td>
+                      <td>{customer.CustomerName}</td>
+                      <td>{customer.CustomerMobile}</td>
+                      <td>{customer.CustomerCheckInDateTime}</td>
+                      <td>{customer.CustomerCheckOutDateTime}</td>
+                      <td>{customer.CustomerGuestNo}</td>
+                      <td>
+                        <button
+                          className="btn btn-secondary ms-5"
+                          onClick={() => handleEditClick(employee)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="btn btn-primary ms-5"
+                          onClick={() => handleDeleteClick(employee)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
