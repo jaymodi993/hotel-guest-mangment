@@ -2,37 +2,36 @@ import React from "react";
 
 function CustomerList() {
   return (
-    <div className="m-4">
+    <div classname="m-4">
       <main>
-        <div className="">
-          <h1 className="mt-4">Tables</h1>
-          <ol className="breadcrumb mb-4">
-            <li className="breadcrumb-item">
-              <a href="#">Dashboard</a>
+        <div classname>
+          <h1 classname="mt-4">Tables</h1>
+          <ol classname="breadcrumb mb-4">
+            <li classname="breadcrumb-item">
+              <a href="{#}">Dashboard</a>
             </li>
-            <li className="breadcrumb-item active">Tables</li>
+            <li classname="breadcrumb-item active">Tables</li>
           </ol>
-
-          <div className="card mb-4">
-            <div className="card-body container">
-              <div className="datatable-top">
-                <div className="datatable-dropdown">
+          <div classname="card mb-4">
+            <div classname="card-body container">
+              <div classname="datatable-top">
+                <div classname="datatable-dropdown">
                   <label>
-                    <select className="datatable-selector">
-                      <option value="5">5</option>
-                      <option value="10" selected="">
+                    <select classname="datatable-selector">
+                      <option value={5}>5</option>
+                      <option value={10} selected>
                         10
                       </option>
-                      <option value="15">15</option>
-                      <option value="20">20</option>
-                      <option value="25">25</option>
+                      <option value={15}>15</option>
+                      <option value={20}>20</option>
+                      <option value={25}>25</option>
                     </select>
                     entries per page
                   </label>
                 </div>
-                <div className="datatable-search">
+                <div classname="datatable-search">
                   <input
-                    className="datatable-input"
+                    classname="datatable-input"
                     placeholder="Search..."
                     type="search"
                     title="Search within table"
@@ -40,10 +39,9 @@ function CustomerList() {
                   />
                 </div>
               </div>
-
               <table
                 id="datatablesSimple"
-                className="table table-hover table-bordered"
+                classname="table table-hover table-bordered"
               >
                 <thead>
                   <tr>
