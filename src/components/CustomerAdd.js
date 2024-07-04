@@ -1,56 +1,95 @@
 import React from "react";
-import roomMaster from "../Database";
-import { useEffect, useRef, useState } from "react"
-import { useSelector, useDispatch } from "react-redux";
-import { CustomerAction } from '../Store/CustomerSlice';
+import { useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { CustomerAction } from "../Store/IndexSlice";
 
 function CustomerAdd() {
-
-  const { customer = {} } = useSelector((store) => store.Customer);
+  // const { CustomerObj = {} } = useSelector((store) => store.customerSlice);
   const dispatch = useDispatch();
-  
-  const [isEdit, setIsEdit] = useState(false);
-
-  const cName = useRef('');
-  const lastName = useRef('');
-  const email = useRef('');
+  const cName = useRef("");
+  const cEmail = useRef("");
+  const cMobile = useRef("");
+  const cRoomNo = useRef("");
+  const cIdType = useRef("");
+  const cIdNo = useRef("");
+  const cArea = useRef("");
+  const cCity = useRef("");
+  const cState = useRef("");
+  const cCountry = useRef("");
+  const cCheckInDate = useRef("");
+  const cCheckOutDate = useRef("");
+  const cGuest = useRef("");
+  const cChild = useRef("");
 
   useEffect(() => {
-      if (cName.firstName == null) {
-        cName.current.valueOf = '';
-          lastName.current.valueOf = '';
-          email.current.valueOf = '';
-          setIsEdit(false);
-      }
-      else {
-          cName.current.valueOf = employee.firstName;
-          lastName.current.valueOf = employee.lastName;
-          email.current.valueOf = employee.email;
-          setIsEdit(true);
-      }
-  }, 
-  [customer.firstName, customer.lastName, customer.email]);
+    cName.current.valueOf = "";
+    cEmail.current.valueOf = "";
+    cMobile.current.valueOf = "";
+    cRoomNo.current.valueOf = "";
+    cIdType.current.valueOf = "";
+    cIdNo.current.valueOf = "";
+    cArea.current.valueOf = "";
+    cCity.current.valueOf = "";
+    cState.current.valueOf = "";
+    cCountry.current.valueOf = "";
+    cCheckInDate.current.valueOf = "";
+    cCheckOutDate.current.valueOf = "";
+    cGuest.current.valueOf = "";
+    cChild.current.valueOf = "";
+  }, []);
 
-  function submitEmployee(e) {
-      e.preventDefault();
-      const customername = cName.current.valueOf;
-      const pLastname = lastName.current.valueOf;
-      const pemail = email.current.valueOf;
-      cName.current.valueOf = '';
-      lastName.current.valueOf = '';
-      email.current.valueOf = '';
-      if(isEdit) {
-          // editEmployee({"firstName":pFirstname,"lastName":pLastname,"email":pemail});
-          dispatch(CustomerAction.editEmployee({
-          body: {"cname":customername,"lastName":pLastname,"email":pemail}
-      }));
-      }
-      else {
-          // addEmp(pFirstname,pLastname, pemail);
-          dispatch(CustomerAction.addEmployee({
-              body: {"cname":customername,"lastName":pLastname,"email":pemail}
-          }));
-      }
+  function submitCustomer(e) {
+    e.preventDefault();
+    const customername = cName.current.valueOf;
+    const customeremail = cEmail.current.valueOf;
+    const customermobile = cMobile.current.valueOf;
+    const customerroomno = cRoomNo.current.valueOf;
+    const customeridtype = cIdType.current.valueOf;
+    const idproofnumber = cIdNo.current.valueOf;
+    const customerarea = cArea.current.valueOf;
+    const customercity = cCity.current.valueOf;
+    const customerstate = cState.current.valueOf;
+    const customercountry = cCountry.current.valueOf;
+    const customercheckindatetime = cCheckInDate.current.valueOf;
+    const customercheckoutdatetime = cCheckOutDate.current.valueOf;
+    const customerguestno = cGuest.current.valueOf;
+    const customerchildrenno = cChild.current.valueOf;
+
+    cName.current.valueOf = "";
+    cEmail.current.valueOf = "";
+    cMobile.current.valueOf = "";
+    cRoomNo.current.valueOf = "";
+    cIdType.current.valueOf = "";
+    cIdNo.current.valueOf = "";
+    cArea.current.valueOf = "";
+    cCity.current.valueOf = "";
+    cState.current.valueOf = "";
+    cCountry.current.valueOf = "";
+    cCheckInDate.current.valueOf = "";
+    cCheckOutDate.current.valueOf = "";
+    cGuest.current.valueOf = "";
+    cChild.current.valueOf = "";
+
+    dispatch(
+      CustomerAction.addCustomer({
+        body: {
+          CustomerName: customername,
+          CustomerEmail: customeremail,
+          CustomerMobile: customermobile,
+          CustomerRoomNo: customerroomno,
+          CustomerIdType: customeridtype,
+          IdProofNumber: idproofnumber,
+          CustomerArea: customerarea,
+          CustomerCity: customercity,
+          CustomerState: customerstate,
+          CustomerCountry: customercountry,
+          CustomerCheckInDateTime: customercheckindatetime,
+          CustomerCheckOutDateTime: customercheckoutdatetime,
+          CustomerGuestNo: customerguestno,
+          CustomerChildrenNo: customerchildrenno,
+        },
+      })
+    );
   }
 
   return (
@@ -62,9 +101,8 @@ function CustomerAdd() {
               Customer Entry
             </h3>
           </div>
-
           <div className="card-body">
-            <form>
+            <form onSubmit={submitCustomer}>
               <div className="row mb-3">
                 <div className="col-md-6">
                   <div className="form-floating mb-3 mb-md-0">
@@ -73,6 +111,7 @@ function CustomerAdd() {
                       id="customername"
                       type="text"
                       placeholder="Enter Customer name"
+                      ref={cName}
                     />
                     <label htmlFor="customername">Customer Name</label>
                   </div>
@@ -84,12 +123,12 @@ function CustomerAdd() {
                       id="customeremail"
                       type="email"
                       placeholder="email@example.com"
+                      ref={cEmail}
                     />
                     <label htmlFor="customeremail">Customer Email</label>
                   </div>
                 </div>
               </div>
-
               <div className="row mb-3">
                 <div className="col-md-6">
                   <div className="form-floating mb-3 mb-md-0">
@@ -98,6 +137,7 @@ function CustomerAdd() {
                       id="customermobile"
                       type="number"
                       placeholder="Enter Customer Mobile"
+                      ref={cMobile}
                     />
                     <label htmlFor="customermobile">Mobile No.</label>
                   </div>
@@ -109,12 +149,12 @@ function CustomerAdd() {
                       id="customerroomno"
                       type="number"
                       placeholder="Enter Your Room No."
+                      ref={cRoomNo}
                     />
                     <label htmlFor="customerroomno">Room No.</label>
                   </div>
                 </div>
               </div>
-
               <div className="row mb-3">
                 <div className="col-md-6">
                   <div className="form-floating mb-3 mb-md-0">
@@ -122,6 +162,7 @@ function CustomerAdd() {
                       name="customeridtype"
                       className="form-control"
                       id="customeridtype"
+                      ref={cIdType}
                     >
                       <option value="Adhar Card">Adhar Card</option>
                       <option value="Pan Card">Pan Card</option>
@@ -138,12 +179,12 @@ function CustomerAdd() {
                       id="idproofnumber"
                       type="text"
                       placeholder="Enter ID Proof Number"
+                      ref={cIdNo}
                     />
                     <label htmlFor="idproofnumber">ID Proof Number</label>
                   </div>
                 </div>
               </div>
-
               <div className="row mb-3">
                 <div className="col-md-6">
                   <div className="form-floating mb-3 mb-md-0">
@@ -152,6 +193,7 @@ function CustomerAdd() {
                       id="customerarea"
                       type="text"
                       placeholder="Enter Customer Area"
+                      ref={cArea}
                     />
                     <label htmlFor="customerarea">Area</label>
                   </div>
@@ -163,12 +205,12 @@ function CustomerAdd() {
                       id="customercity"
                       type="text"
                       placeholder="Enter Your City Name"
+                      ref={cCity}
                     />
                     <label htmlFor="customercity">City</label>
                   </div>
                 </div>
               </div>
-
               <div className="row mb-3">
                 <div className="col-md-6">
                   <div className="form-floating mb-3 mb-md-0">
@@ -177,6 +219,7 @@ function CustomerAdd() {
                       id="customerstate"
                       type="text"
                       placeholder="Enter Your State Name"
+                      ref={cState}
                     />
                     <label htmlFor="customerstate">State</label>
                   </div>
@@ -188,12 +231,12 @@ function CustomerAdd() {
                       id="customercountry"
                       type="text"
                       placeholder="Enter Your Country Name"
+                      ref={cCountry}
                     />
                     <label htmlFor="customercountry">Country</label>
                   </div>
                 </div>
               </div>
-
               <div className="row mb-3">
                 <div className="col-md-6">
                   <div className="form-floating mb-3 mb-md-0">
@@ -202,6 +245,7 @@ function CustomerAdd() {
                       id="customercheckindatetime"
                       type="datetime-local"
                       placeholder="Enter Your Check-Out Date & Time"
+                      ref={cCheckInDate}
                     />
                     <label htmlFor="customercheckindatetime">
                       Check-In Date & Time
@@ -215,6 +259,7 @@ function CustomerAdd() {
                       id="customercheckoutdatetime"
                       type="datetime-local"
                       placeholder="Enter Your Check-Out Date & Time"
+                      ref={cCheckOutDate}
                     />
                     <label htmlFor="customercheckoutdatetime">
                       Check-Out Date & Time
@@ -222,7 +267,6 @@ function CustomerAdd() {
                   </div>
                 </div>
               </div>
-
               <div className="row mb-3">
                 <div className="col-md-6">
                   <div className="form-floating mb-3 mb-md-0">
@@ -231,6 +275,7 @@ function CustomerAdd() {
                       id="customerguestno"
                       type="number"
                       placeholder="Enter No. of Guest"
+                      ref={cGuest}
                     />
                     <label htmlFor="customerguestno">No. Of Guest</label>
                   </div>
@@ -242,17 +287,17 @@ function CustomerAdd() {
                       id="customerchildrenno"
                       type="number"
                       placeholder="Enter No. of Children"
+                      ref={cChild}
                     />
                     <label htmlFor="customerchildrenno">No. Of Children</label>
                   </div>
                 </div>
               </div>
-
               <div className="mt-4 mb-0">
                 <div className="d-grid">
-                  <a className="btn btn-primary btn-block" href="login.html">
-                    Create Account
-                  </a>
+                  <button className="btn btn-primary btn-block" type="submit">
+                    Add Customer
+                  </button>
                 </div>
               </div>
             </form>

@@ -23,9 +23,24 @@ const UserSlice = createSlice({
 
 export const UserAction = UserSlice.actions;
 
+const CustomerSlice = createSlice({
+  name: "customerSlice",
+  initialState: { CustomerList: [], CustomerObj: {} },
+  reducers: {
+    addCustomer: (state, action) => {
+      action.payload.body.CustomerId = Math.random();
+      const newCustomerList = [...state.CustomerList, action.payload.body];
+      state.CustomerList = newCustomerList;
+      return state;
+    },
+  },
+});
+export const CustomerAction = CustomerSlice.actions;
+
 const userStore = configureStore({
   reducer: {
     userSlice: UserSlice.reducer,
+    customerSlice: CustomerSlice.reducer,
   },
 });
 

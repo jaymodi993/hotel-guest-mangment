@@ -4,9 +4,6 @@ export const CustomerContext = createContext(
     {
         customerList: [],
         addCustomer: () => {},
-        deleteCustomer: () => {},
-        editCustomer: () => {},
-        fillCtmForm: () => {},
-        ctmData: {}
+        customerData: {}
     }
 );
