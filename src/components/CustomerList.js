@@ -28,7 +28,6 @@ function CustomerList() {
           <div className="card mb-4">
             <div className="card-body container">
               <div className="datatable-top">
-              
                 <div className="datatable-search">
                   <input
                     className="datatable-input"
