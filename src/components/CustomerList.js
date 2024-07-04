@@ -48,7 +48,7 @@ function CustomerList() {
                       <td>{customer.CustomerCheckInDateTime}</td>
                       <td>{customer.CustomerCheckOutDateTime}</td>
                       <td>{customer.CustomerGuestNo}</td>
-                      <td>
+                      {/* <td>
                         <button
                           className="btn btn-secondary ms-5"
                           onClick={() => handleEditClick(employee)}
@@ -61,7 +61,7 @@ function CustomerList() {
                         >
                           Delete
                         </button>
-                      </td>
+                      </td> */}
                     </tr>
                   ))}
                 </tbody>
