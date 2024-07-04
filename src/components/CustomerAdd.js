@@ -1,7 +1,58 @@
 import React from "react";
 import roomMaster from "../Database";
+import { useEffect, useRef, useState } from "react"
+import { useSelector, useDispatch } from "react-redux";
+import { CustomerAction } from '../Store/CustomerSlice';
 
 function CustomerAdd() {
+
+  const { customer = {} } = useSelector((store) => store.Customer);
+  const dispatch = useDispatch();
+  
+  const [isEdit, setIsEdit] = useState(false);
+
+  const cName = useRef('');
+  const lastName = useRef('');
+  const email = useRef('');
+
+  useEffect(() => {
+      if (cName.firstName == null) {
+        cName.current.valueOf = '';
+          lastName.current.valueOf = '';
+          email.current.valueOf = '';
+          setIsEdit(false);
+      }
+      else {
+          cName.current.valueOf = employee.firstName;
+          lastName.current.valueOf = employee.lastName;
+          email.current.valueOf = employee.email;
+          setIsEdit(true);
+      }
+  }, 
+  [customer.firstName, customer.lastName, customer.email]);
+
+  function submitEmployee(e) {
+      e.preventDefault();
+      const customername = cName.current.valueOf;
+      const pLastname = lastName.current.valueOf;
+      const pemail = email.current.valueOf;
+      cName.current.valueOf = '';
+      lastName.current.valueOf = '';
+      email.current.valueOf = '';
+      if(isEdit) {
+          // editEmployee({"firstName":pFirstname,"lastName":pLastname,"email":pemail});
+          dispatch(CustomerAction.editEmployee({
+          body: {"cname":customername,"lastName":pLastname,"email":pemail}
+      }));
+      }
+      else {
+          // addEmp(pFirstname,pLastname, pemail);
+          dispatch(CustomerAction.addEmployee({
+              body: {"cname":customername,"lastName":pLastname,"email":pemail}
+          }));
+      }
+  }
+
   return (
     <div className="row justify-content-center">
       <div className="col-lg-12">
