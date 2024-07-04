@@ -34,6 +34,22 @@ const CustomerSlice = createSlice({
       state.CustomerList = newCustomerList;
       return state;
     },
+    
+    updateCustomer: (state, action) =>{
+      let newCustomers = state.CustomerList.filter(i => i.customername !== action.payload.body.customername);
+      newCustomers = [...newCustomers,action.payload.body];
+      state.CustomerList = newCustomers;
+      state.CustomerObj = {};
+  },
+
+  deleteCustomer: (state, action) =>{
+      let newCustomers = state.employeeList.filter(i => i.customername !== action.payload.body.customername);
+      state.CustomerList = newCustomers;
+  },
+
+  fillFormCustomer: (state, action) =>{
+      state.CustomerObj = action.payload.body;
+  },
   },
 });
 export const CustomerAction = CustomerSlice.actions;

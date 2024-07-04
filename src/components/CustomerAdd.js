@@ -1,14 +1,16 @@
 import React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef,useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { CustomerAction } from "../Store/IndexSlice";
 import { useNavigate } from "react-router-dom";
 
 
 function CustomerAdd() {
-  // const {CustomerObj} = useSelector((store) => store.customerSlice);
+  const {CustomerObj} = useSelector((store) => store.customerSlice);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isEdit, setIsEdit] = useState(false);
+
   
   const cName = useRef("");
   const cEmail = useRef("");
@@ -26,6 +28,7 @@ function CustomerAdd() {
   const cChild = useRef("");
 
   useEffect(() => {
+    if(CustomerObj.cName == null) {
     cName.current.value = "";
     cEmail.current.value = "";
     cMobile.current.value = "";
@@ -40,7 +43,26 @@ function CustomerAdd() {
     cCheckOutDate.current.value = "";
     cGuest.current.value = "";
     cChild.current.value = "";
-  }, []);
+    setIsEdit(false);
+  }else{
+    cName.current.value = CustomerObj.cName;
+    cEmail.current.value = CustomerObj.cEmail;
+    cMobile.current.value = CustomerObj.cMobile;
+    cRoomNo.current.value = CustomerObj.cRoomNo;
+    cIdType.current.value = CustomerObj.cIdType;
+    cIdNo.current.value = CustomerObj.cIdNo;
+    cArea.current.value = CustomerObj.cArea;
+    cCity.current.value = CustomerObj.cCity;
+    cState.current.value = CustomerObj.cState;
+    cCountry.current.value = CustomerObj.cCountry;
+    cCheckInDate.current.value = CustomerObj.cCheckInDate;
+    cCheckOutDate.current.value = CustomerObj.cCheckOutDate;
+    cGuest.current.value = CustomerObj.cGuest;
+    cChild.current.value = CustomerObj.cChild;
+    setIsEdit(true);
+  
+  }
+}, []);
 
   function submitCustomer(e) {
     debugger
@@ -75,26 +97,49 @@ function CustomerAdd() {
     cGuest.current.value = "";
     cChild.current.value = "";
 
-    dispatch(
-      CustomerAction.addCustomer({
-        body: {
-          'CustomerName': customername,
-         'CustomerEmail': customeremail,
-          'CustomerMobile': customermobile,
-          'CustomerRoomNo': customerroomno,
-          'CustomerIdType': customeridtype,
-          'IdProofNumber': idproofnumber,
-          'CustomerArea': customerarea,
-          'CustomerCity': customercity,
-          'CustomerState': customerstate,
-          'CustomerCountry': customercountry,
-          'CustomerCheckInDateTime': customercheckindatetime,
-          'CustomerCheckOutDateTime': customercheckoutdatetime,
-          'CustomerGuestNo': customerguestno,
-          'CustomerChildrenNo': customerchildrenno,
-        },
-      })  
-    );
+     if(isEdit) {
+      dispatch(
+        CustomerAction.addCustomer({
+          body: {
+            'CustomerName': customername,
+           'CustomerEmail': customeremail,
+            'CustomerMobile': customermobile,
+            'CustomerRoomNo': customerroomno,
+            'CustomerIdType': customeridtype,
+            'IdProofNumber': idproofnumber,
+            'CustomerArea': customerarea,
+            'CustomerCity': customercity,
+            'CustomerState': customerstate,
+            'CustomerCountry': customercountry,
+            'CustomerCheckInDateTime': customercheckindatetime,
+            'CustomerCheckOutDateTime': customercheckoutdatetime,
+            'CustomerGuestNo': customerguestno,
+            'CustomerChildrenNo': customerchildrenno,
+          },
+        }));
+        }
+        else {
+            dispatch( 
+              CustomerAction.updateCustomer({
+                body: {
+                  'CustomerName': customername,
+                 'CustomerEmail': customeremail,
+                  'CustomerMobile': customermobile,
+                  'CustomerRoomNo': customerroomno,
+                  'CustomerIdType': customeridtype,
+                  'IdProofNumber': idproofnumber,
+                  'CustomerArea': customerarea,
+                  'CustomerCity': customercity,
+                  'CustomerState': customerstate,
+                  'CustomerCountry': customercountry,
+                  'CustomerCheckInDateTime': customercheckindatetime,
+                  'CustomerCheckOutDateTime': customercheckoutdatetime,
+                  'CustomerGuestNo': customerguestno,
+                  'CustomerChildrenNo': customerchildrenno,
+                },
+              })  
+            );
+        }
     navigate('/');
   }
 
@@ -301,9 +346,13 @@ function CustomerAdd() {
               </div>
               <div className="mt-4 mb-0">
                 <div className="d-grid">
-                  <button className="btn btn-primary btn-block" type="submit">
-                    Add Customer
-                  </button>
+                {
+                    (isEdit) ? 
+                    <input className="btn btn-primary" type="submit" value="Update" /> 
+                    :
+                    <input className="btn btn-primary" type="submit" value="Save" />
+
+                }
                 </div>
               </div>
             </form>

@@ -1,12 +1,25 @@
 import React from "react";
-// import { CustomerAction } from "../Store/IndexSlice";
+import { CustomerAction } from "../Store/IndexSlice";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function CustomerList() {
   debugger
   const {CustomerList} = useSelector((store) => store.customerSlice);
+  const dispatch = useDispatch();
 
-  
+  const handleEditClick = (customer) => {
+      dispatch(CustomerAction.fillFormCustomer({
+          body: customer
+      }));
+  };
+  const handleDeleteClick = (customer) => {
+
+      dispatch(CustomerAction.deleteCustomer({
+          body: customer
+      }));
+  };
+
   return  (
     <div className="m-4">
       <main>
@@ -50,10 +63,19 @@ function CustomerList() {
                     <td>{customer.CustomerCheckInDateTime}</td>
                     <td>{customer.CustomerCheckOutDateTime}</td>
                     <td>{customer.CustomerGuestNo}</td>
+                    <td>
+                    <button className="btn btn-secondary ms-5" onClick={() => handleEditClick(customer)} >
+                                Edit
+                            </button>
+                            <button className="btn btn-primary ms-5" onClick={() => handleDeleteClick(customer)}>
+                                Delete
+                            </button>
+                    </td>
                   </tr>
                 ))}
                 </tbody>
               </table>
+              
             </div>
           </div>
         </div>
