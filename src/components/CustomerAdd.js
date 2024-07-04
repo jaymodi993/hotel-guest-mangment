@@ -55,12 +55,35 @@ function CustomerAdd() {
                       className="form-control"
                       id="customeridtype"
                     >
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
-                      <option value="mercedes">Mercedes</option>
-                      <option value="audi">Audi</option>
+                      <option value="Adhar Card">Adhar Card</option>
+                      <option value="Pan Card">Pan Card</option>
+                      <option value="Passport">Passport</option>
+                      <option value="Driving Licence">Driving Licence</option>
                     </select>
-                    <input type="" placeholder="Enter Customer Mobile" />
+                    <label htmlFor="customeridtype">Customer ID Type</label>
+                  </div>
+                </div>
+              </div>
+              <div className="row mb-3">
+                <div className="col-md-6">
+                  <div className="form-floating mb-3 mb-md-0">
+                    <input
+                      className="form-control"
+                      id="customername"
+                      type="text"
+                      placeholder="Enter Customer name"
+                    />
+                    <label htmlFor="customername">Customer Name</label>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="form-floating">
+                    <input
+                      className="form-control"
+                      id="customermobile"
+                      type="text"
+                      placeholder="Enter Customer Mobile"
+                    />
                     <label htmlFor="customermobile">Mobile No.</label>
                   </div>
                 </div>
