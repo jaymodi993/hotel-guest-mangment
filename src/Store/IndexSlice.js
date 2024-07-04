@@ -17,7 +17,7 @@ const UserSlice = createSlice({
     },
     logout: (state) => {
       state.isUserAuthenticated = false;
-    }
+    },
   },
 });
 
