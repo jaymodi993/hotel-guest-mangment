@@ -9,6 +9,7 @@ function CustomerAdd() {
   const {CustomerObj} = useSelector((store) => store.customerSlice);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [isEdit, setIsEdit] = useState(false);
 
   
@@ -28,7 +29,7 @@ function CustomerAdd() {
   const cChild = useRef("");
 
   useEffect(() => {
-    if(CustomerObj.cName == null) {
+    if(CustomerObj.CustomerId == null) {
     cName.current.value = "";
     cEmail.current.value = "";
     cMobile.current.value = "";
@@ -44,7 +45,9 @@ function CustomerAdd() {
     cGuest.current.value = "";
     cChild.current.value = "";
     setIsEdit(false);
-  }else{
+
+  }
+  else{
     cName.current.value = CustomerObj.cName;
     cEmail.current.value = CustomerObj.cEmail;
     cMobile.current.value = CustomerObj.cMobile;
@@ -58,7 +61,7 @@ function CustomerAdd() {
     cCheckInDate.current.value = CustomerObj.cCheckInDate;
     cCheckOutDate.current.value = CustomerObj.cCheckOutDate;
     cGuest.current.value = CustomerObj.cGuest;
-    cChild.current.value = CustomerObj.cChild;
+    cChild.current.value = CustomerObj.cCheckInDate;
     setIsEdit(true);
   
   }
@@ -98,8 +101,9 @@ function CustomerAdd() {
     cChild.current.value = "";
 
      if(isEdit) {
+      debugger
       dispatch(
-        CustomerAction.addCustomer({
+        CustomerAction.updateCustomer({
           body: {
             'CustomerName': customername,
            'CustomerEmail': customeremail,
@@ -117,10 +121,10 @@ function CustomerAdd() {
             'CustomerChildrenNo': customerchildrenno,
           },
         }));
-        }
+      }
         else {
             dispatch( 
-              CustomerAction.updateCustomer({
+              CustomerAction.addCustomer({
                 body: {
                   'CustomerName': customername,
                  'CustomerEmail': customeremail,
@@ -351,7 +355,6 @@ function CustomerAdd() {
                     <input className="btn btn-primary" type="submit" value="Update" /> 
                     :
                     <input className="btn btn-primary" type="submit" value="Save" />
-
                 }
                 </div>
               </div>

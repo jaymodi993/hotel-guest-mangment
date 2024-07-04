@@ -36,14 +36,14 @@ const CustomerSlice = createSlice({
     },
     
     updateCustomer: (state, action) =>{
-      let newCustomers = state.CustomerList.filter(i => i.customername !== action.payload.body.customername);
+      let newCustomers = state.CustomerList.filter(i => i.CustomerId !== action.payload.body.CustomerId);
       newCustomers = [...newCustomers,action.payload.body];
       state.CustomerList = newCustomers;
       state.CustomerObj = {};
   },
 
   deleteCustomer: (state, action) =>{
-      let newCustomers = state.employeeList.filter(i => i.customername !== action.payload.body.customername);
+      let newCustomers = state.CustomerList.filter(i => i.CustomerId !== action.payload.body.CustomerId);
       state.CustomerList = newCustomers;
   },
 

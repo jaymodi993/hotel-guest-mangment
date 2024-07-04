@@ -4,17 +4,16 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 function CustomerList() {
-  debugger
   const {CustomerList} = useSelector((store) => store.customerSlice);
   const dispatch = useDispatch();
 
   const handleEditClick = (customer) => {
+    debugger
       dispatch(CustomerAction.fillFormCustomer({
           body: customer
       }));
   };
   const handleDeleteClick = (customer) => {
-
       dispatch(CustomerAction.deleteCustomer({
           body: customer
       }));
@@ -63,6 +62,7 @@ function CustomerList() {
                     <td>{customer.CustomerCheckOutDateTime}</td>
                     <td>{customer.CustomerGuestNo}</td>
                     <td>
+                      
                     <button className="btn btn-secondary ms-5" onClick={() => handleEditClick(customer)} >
                                 Edit
                             </button>
