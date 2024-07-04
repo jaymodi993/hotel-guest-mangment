@@ -15,8 +15,8 @@ function CustomerList() {
 
           <div className="card mb-4">
             <div className="card-body container">
-              <div class="datatable-top">
-                <div class="datatable-dropdown">
+              <div className="datatable-top">
+                <div className="datatable-dropdown">
                   <label>
                     <select className="datatable-selector">
                       <option value="5">5</option>
@@ -30,7 +30,7 @@ function CustomerList() {
                     entries per page
                   </label>
                 </div>
-                <div class="datatable-search">
+                <div className="datatable-search">
                   <input
                     className="datatable-input"
                     placeholder="Search..."
