@@ -5,14 +5,34 @@ function CustomerList() {
     <div className="m-4">
       <main>
         <div className="">
-          <h1 className="mt-4">CustomerList</h1>
+          <h1 className="mt-4">Tables</h1>
+          <ol className="breadcrumb mb-4">
+            <li className="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li className="breadcrumb-item active">Tables</li>
+          </ol>
+
           <div className="card mb-4">
             <div className="card-body container">
               <div className="datatable-top">
-              
+                <div className="datatable-dropdown">
+                  <label>
+                    <select className="datatable-selector">
+                      <option value="5">5</option>
+                      <option value="10" selected="">
+                        10
+                      </option>
+                      <option value="15">15</option>
+                      <option value="20">20</option>
+                      <option value="25">25</option>
+                    </select>
+                    entries per page
+                  </label>
+                </div>
                 <div className="datatable-search">
                   <input
-                    className="datatable-input"
+                    classname="datatable-input"
                     placeholder="Search..."
                     type="search"
                     title="Search within table"
@@ -20,10 +40,9 @@ function CustomerList() {
                   />
                 </div>
               </div>
-
               <table
                 id="datatablesSimple"
-                className="table table-hover table-bordered"
+                classname="table table-hover table-bordered"
               >
                 <thead>
                   <tr>
