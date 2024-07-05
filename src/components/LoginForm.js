@@ -16,7 +16,6 @@ function LoginForm() {
     const pPassword = password.current.value;
     userName.current.value = "";
     password.current.value = "";
-
     dispatch(
       UserAction.setIsUserAuthenticated({
         body: { userName: pUserName, password: pPassword },

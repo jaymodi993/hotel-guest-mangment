@@ -1,6 +1,6 @@
 export const userDetail = {
-  userName: "",
-  password: "",
+  userName: "Admin",
+  password: "123",
 };
 
 export const roomMaster = [

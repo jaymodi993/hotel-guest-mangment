@@ -25,7 +25,6 @@ function Header() {
           <a
             className="nav-link dropdown-toggle"
             id="navbarDropdown"
-            href="{}"
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
@@ -37,7 +36,7 @@ function Header() {
             aria-labelledby="navbarDropdown"
           >
             <li>
-              <a className="dropdown-item" onClick={logout} href="{}">
+              <a className="dropdown-item" onClick={logout}>
                 Logout
               </a>
             </li>
