@@ -1,10 +1,35 @@
-import React from "react";
-// import { CustomerAction } from "../Store/IndexSlice";
+import React, { useState } from "react";
+import { CustomerAction } from "../Store/IndexSlice";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function CustomerList() {
-  debugger;
   const { CustomerList } = useSelector((store) => store.customerSlice);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [filteredCustomers, setFilteredCustomers] = useState(CustomerList)
+
+  const handleEditClick = (customer) => {
+    dispatch(CustomerAction.fillFormCustomer({
+      body: customer
+    }));
+    navigate("add-customer");
+  };
+  const handleDeleteClick = (customer) => {
+    dispatch(CustomerAction.deleteCustomer({
+      body: customer
+    }));
+  };
+  const handleSearch = (searchText) => {
+    const filteredItems = CustomerList.filter((customer) =>
+      customer.CustomerName.toLowerCase().includes(searchText.toLowerCase())
+      );
+  
+      setFilteredCustomers(filteredItems);
+  };
+
 
   return (
     <div className="m-4">
@@ -21,6 +46,7 @@ function CustomerList() {
                     type="search"
                     title="Search within table"
                     aria-controls="datatablesSimple"
+                    onChange={(e) => handleSearch(e.target.value)}
                   />
                 </div>
               </div>
@@ -40,25 +66,20 @@ function CustomerList() {
                   </tr>
                 </thead>
                 <tbody>
-                  {CustomerList.map((customer, index) => (
-                    <tr key={index}>
+                  {filteredCustomers.map((customer, index) => (
+                    <tr key={customer.CustomerId}>
                       <td>{customer.CustomerId}</td>
                       <td>{customer.CustomerName}</td>
                       <td>{customer.CustomerMobile}</td>
                       <td>{customer.CustomerCheckInDateTime}</td>
                       <td>{customer.CustomerCheckOutDateTime}</td>
                       <td>{customer.CustomerGuestNo}</td>
-                      {/* <td>
-                        <button
-                          className="btn btn-secondary ms-5"
-                          onClick={() => handleEditClick(employee)}
-                        >
+                      <td>
+
+                        <button className="btn btn-secondary ms-5" onClick={() => handleEditClick(customer)} >
                           Edit
                         </button>
-                        <button
-                          className="btn btn-primary ms-5"
-                          onClick={() => handleDeleteClick(employee)}
-                        >
+                        <button className="btn btn-primary ms-5" onClick={() => handleDeleteClick(customer)}>
                           Delete
                         </button>
                       </td> */}
@@ -66,6 +87,7 @@ function CustomerList() {
                   ))}
                 </tbody>
               </table>
+
             </div>
           </div>
         </div>
