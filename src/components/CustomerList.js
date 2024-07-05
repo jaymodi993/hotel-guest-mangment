@@ -82,7 +82,7 @@ function CustomerList() {
                         <button className="btn btn-primary ms-5" onClick={() => handleDeleteClick(customer)}>
                           Delete
                         </button>
-                      </td>
+                      </td> 
                     </tr>
                   ))}
                 </tbody>
